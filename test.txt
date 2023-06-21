@@ -1,0 +1,155 @@
+Java程序实现：
+
+首字母大写，其余小写
+java
+Copy
+public static String capitalize(String str) {
+    if (str == null || str.isEmpty()) {
+        return str;
+    }
+
+    String[] words = str.split(" ");
+    StringBuilder result = new StringBuilder();
+    for (String word : words) {
+        result.append(word.substring(0, 1).toUpperCase())
+                .append(word.substring(1).toLowerCase())
+                .append(" ");
+    }
+    return result.toString().trim();
+}
+数组元素及后面元素的和
+java
+Copy
+public static int[] cumulativeSum(int[] nums) {
+    int[] result = new int[nums.length];
+    int sum = 0;
+    for (int i = nums.length - 1; i >= 0; i--) {
+        sum += nums[i];
+        result[i] = sum;
+    }
+    return result;
+}
+判断回文字符串
+java
+Copy
+public static boolean isPalindrome(String str) {
+    if (str == null || str.isEmpty()) {
+        return true;
+    }
+
+    int left = 0;
+    int right = str.length() - 1;
+    while (left < right) {
+        if (str.charAt(left) != str.charAt(right)) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}
+判断质数
+java
+Copy
+public static boolean isPrime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+
+    for (int i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+生成螺旋矩阵
+java
+Copy
+public static int[][] generateSpiralMatrix(int n) {
+    int[][] matrix = new int[n][n];
+    int num = 1;
+    int rowStart = 0;
+    int rowEnd = n - 1;
+    int colStart = 0;
+    int colEnd = n - 1;
+
+    while (rowStart <= rowEnd && colStart <= colEnd) {
+        for (int col = colStart; col <= colEnd; col++) {
+            matrix[rowStart][col] = num++;
+        }
+        for (int row = rowStart + 1; row <= rowEnd; row++) {
+            matrix[row][colEnd] = num++;
+        }
+        if (rowStart < rowEnd && colStart < colEnd) {
+            for (int col = colEnd - 1; col > colStart; col--) {
+                matrix[rowEnd][col] = num++;
+            }
+            for (int row = rowEnd; row > rowStart; row--) {
+                matrix[row][colStart] = num++;
+            }
+        }
+        rowStart++;
+        rowEnd--;
+        colStart++;
+        colEnd--;
+    }
+
+    return matrix;
+}
+每个字符后面的第一个非重复字符
+java
+Copy
+public static String nextNonRepeatingChar(String str) {
+    if (str == null || str.isEmpty()) {
+        return "";
+    }
+
+    Map<Character, Integer> map = new HashMap<>();
+    for (int i = 0; i < str.length(); i++) {
+        char c = str.charAt(i);
+        map.put(c, map.getOrDefault(c, 0) + 1);
+    }
+
+    StringBuilder result = new StringBuilder();
+    for (int i = 0; i < str.length(); i++) {
+        char c = str.charAt(i);
+        if (map.get(c) == 1) {
+            result.append(c);
+        } else {
+            result.append("#");
+        }
+    }
+    return result.toString();
+}
+除该元素外的所有元素的乘积
+java
+Copy
+public static int[] productExceptSelf(int[] nums) {
+    int[] result = new int[nums.length];
+    int product = 1;
+    for (int i = 0; i < nums.length; i++) {
+        result[i] = product;
+        product *= nums[i];
+    }
+    product = 1;
+    for (int i = nums.length - 1; i >= 0; i--) {
+        result[i] *= product;
+        product *= nums[i];
+    }
+    return result;
+}
+判断字符串是否可以由单词列表中的单词组成
+java
+Copy
+public static boolean canConstruct(String str, List<String> wordList) {
+    Set<String> set = new HashSet<>(wordList);
+    int[] dp = new int[str.length() + 1];
+    dp9. 左侧元素的乘积和右侧元素的乘积之和
+
+```java
+public static int[] sumOfLeftAndRight(int[] nums) {
+    int[] result = new int[nums.length];
+    int leftProduct = 1;
+    int rightProduct = 1;
+    for (int i = 0; i < nums.length
